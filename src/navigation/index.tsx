@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import {
   TouchableOpacity,
   View,
-  useColorScheme,
+  // useColorScheme,
   SafeAreaView,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
@@ -50,8 +50,8 @@ const animate2 = {
 
 const circle1 = {
   0: { scale: 0 },
-  0.3: { scale: 0.9 },
-  0.5: { scale: 0.2 },
+  0.3: { scale: 0.2 },
+  0.5: { scale: 0.5 },
   0.8: { scale: 0.7 },
   1: { scale: 1 },
 };
@@ -62,22 +62,22 @@ const TabButton = (props: any) => {
   const focused = accessibilityState.selected;
   const viewRef = useRef(null);
   const circleRef = useRef(null);
-  const textRef = useRef(null);
-  const isDarkMode = useColorScheme() === "dark";
+  // const textRef = useRef(null);
+  // const isDarkMode = useColorScheme() === "dark";
 
   const { colors } = useTheme();
-  const color = isDarkMode ? "#FFFFFF" : "#000000";
+  // const color = isDarkMode ? "#FFFFFF" : "#000000";
   const bgColor = colors.background;
 
   useEffect(() => {
     if (focused) {
       viewRef?.current?.animate(animate1);
       circleRef?.current?.animate(circle1);
-      textRef?.current?.transitionTo({ scale: 1 });
+      // textRef?.current?.transitionTo({ scale: 1 });
     } else {
       viewRef?.current?.animate(animate2);
       circleRef?.current?.animate(circle2);
-      textRef?.current?.transitionTo({ scale: 0 });
+      // textRef?.current?.transitionTo({ scale: 0 });
     }
   }, [focused]);
 
@@ -87,7 +87,7 @@ const TabButton = (props: any) => {
       activeOpacity={1}
       style={styles.container}
     >
-      <Animatable.View ref={viewRef} duration={1000} style={styles.container}>
+      <Animatable.View ref={viewRef} duration={500} style={styles.container}>
         <View
           style={[
             styles.btn,
